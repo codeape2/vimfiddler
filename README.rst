@@ -9,8 +9,8 @@ Requirements:
 * The selenium Python driver (included)
 * A web server to host the fiddles (for instance apache)
 
-Installing
-==========
+Installation
+============
 
 1. Unpack vimfiddler in ~/public_html (or use a symbolic link)
 2. You need Selenium Server from http://seleniumhq/download/
@@ -19,8 +19,8 @@ Installing
 4. Edit ``fiddler.vim`` to use a different browser. The default is ``*firefox``.
    Use ``*googlechrome`` to use Chrome.
 
-Using
-=====
+Use
+===
 
 Video: http://vimeo.com/32148952
 
@@ -31,3 +31,6 @@ Video: http://vimeo.com/32148952
     :StartSeleniumServer
     :StartSeleniumClient
     :OpenFiddle example
+
+* When either ``code.js`` or ``index.html`` is saved, Vim will tell selenium
+  to refresh the page.
