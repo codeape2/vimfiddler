@@ -1,8 +1,1 @@
-//
-// Declarations
-//
-
-
-$(function() {
-    alert("hello from js");
-});
+// put your javascript code here
