@@ -1,6 +1,7 @@
 command! StartSeleniumServer ! xterm -e selenium &
 command! StartSeleniumClient call StartSeleniumClient()
 command! -complete=custom,ListFiddles -nargs=1 OpenFiddle call OpenFiddle('<args>')
+command! NewFiddle call NewFiddle()
 command! JSLint call JSLint()
 nmap <F4> :JSLint<CR>
 
@@ -19,6 +20,10 @@ function! ListFiddles(A,L,P)
     return system("ls fiddles")
 endfunction
 
+function! ListTemplates(A,L,P)
+    return system("ls templates")
+endfunction
+
 function! OpenFiddle(fiddlename)
     let htmlfile = "fiddles/" . a:fiddlename . "/index.html"
     let jsfile = "fiddles/" . a:fiddlename . "/code.js"
@@ -29,6 +34,16 @@ function! OpenFiddle(fiddlename)
 
     call WatchFile(jsfile)
     call WatchFile(htmlfile)
+endfunction
+
+function! NewFiddle()
+    let fiddlename = input("Name: ")
+    let templatename = input("Use template: ", "default", "custom,ListTemplates")
+
+    call mkdir("fiddles/" . fiddlename)
+
+    exe "! cp templates/" . templatename . "/* fiddles/" . fiddlename
+    call OpenFiddle(fiddlename)
 endfunction
 
 function! WatchFile(filename)
@@ -58,4 +73,4 @@ au!
 augroup END
 
 python import sys; sys.path.append(".")
-echo 'Commands: StartSeleniumServer, StartSeleniumClient, OpenFiddle'
+echo 'Commands: StartSeleniumServer, StartSeleniumClient, OpenFiddle, NewFiddle'

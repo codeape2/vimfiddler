@@ -44,5 +44,12 @@ Video: http://vimeo.com/32148952
     :StartSeleniumClient
     :OpenFiddle example
 
+    or
+
+    :NewFiddle
+    Name: <enter fiddle name>
+    Use template: default
+
+
 * When either ``code.js`` or ``index.html`` is saved, Vim will tell selenium
   to refresh the page.
