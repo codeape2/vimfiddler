@@ -1,6 +1,19 @@
 command! StartSeleniumServer ! xterm -e selenium &
 command! StartSeleniumClient call StartSeleniumClient()
 command! -complete=custom,ListFiddles -nargs=1 OpenFiddle call OpenFiddle('<args>')
+command! JSLint call JSLint()
+nmap <F4> :JSLint<CR>
+
+function! JSLint()
+    ! jslint % | tee /tmp/vimfiddler.jslint
+    setlocal errorformat=%-P%f,
+                        \%-G/*jslint\ %.%#*/,
+                        \%*[\ ]%n\ %l\\,%c:\ %m,
+                        \%-G\ \ \ \ %.%#,
+                        \%-GNo\ errors\ found.,
+                        \%-Q
+    cf /tmp/vimfiddler.jslint
+endfunction
 
 function! ListFiddles(A,L,P)
     return system("ls fiddles")
