@@ -2,7 +2,6 @@
 // Declarations
 //
 
-
 $(function() {
-    $("button").click(function() {alert("hello world")});
+    $("button").click(function() {alert("hello world");});
 });
