@@ -2,6 +2,8 @@
 VIMFIDDLER
 ==========
 
+See https://github.com/mharju/vim-fiddle for a similar project (but I believe Mac only).
+
 Requirements
 ============
 
