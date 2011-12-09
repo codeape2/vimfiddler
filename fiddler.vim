@@ -1,5 +1,4 @@
-command! StartSeleniumServer ! xterm -e selenium &
-command! StartSeleniumClient call StartSeleniumClient()
+"command! StartSeleniumClient call StartSeleniumClient()
 command! -complete=custom,ListFiddles -nargs=1 OpenFiddle call OpenFiddle('<args>')
 command! NewFiddle call NewFiddle()
 command! JSLint call JSLint()
@@ -55,13 +54,12 @@ function! OpenFiddleInBrowser(fiddlename)
 endfunction
 
 function! StartSeleniumClient()
-    python from selenium import selenium
-    python browser = selenium("localhost", 4444, '*firefox', "http://localhost/")
-    python browser.start()
+    python from selenium import webdriver
+    python browser = webdriver.Chrome()
 endfunction
 
 function! OpenURL(url)
-    execute ":python browser.open('" . a:url ."')"
+    execute ":python browser.get('" . a:url ."')"
 endfunction
 
 function! Refresh()
@@ -73,4 +71,6 @@ au!
 augroup END
 
 python import sys; sys.path.append(".")
-echo 'Commands: StartSeleniumServer, StartSeleniumClient, OpenFiddle, NewFiddle'
+echo 'Commands: StartSeleniumClient, OpenFiddle, NewFiddle'
+echo 'Starting selenium webdriver'
+call StartSeleniumClient()
